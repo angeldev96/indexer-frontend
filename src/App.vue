@@ -1,15 +1,30 @@
+<!-- src/App.vue -->
+
 <template>
-  <div class="h-screen bg-gray-100 p-8">
-    <EmailSearch />
+  <div>
+    <Search @results="updateEmails" />
+    <EmailList :emails="emails" />
   </div>
 </template>
 
 <script>
-import EmailSearch from './components/EmailSearch.vue';
+import Search from './components/Search.vue';
+import EmailList from './components/EmailList.vue';
 
 export default {
   components: {
-    EmailSearch
+    Search,
+    EmailList
+  },
+  data() {
+    return {
+      emails: []
+    };
+  },
+  methods: {
+    updateEmails(results) {
+      this.emails = results;
+    }
   }
 };
 </script>
